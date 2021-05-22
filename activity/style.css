@@ -1,0 +1,45 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background-color: black;
+    margin: 0;
+}
+.video_container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+#videoElement{
+    width: 100%;
+    height: 100%;
+}
+#record_button{
+    position: fixed;
+    width: 5rem;
+    height: 5rem;
+    top: 18vw;
+    z-index: 2;
+    border-radius: 50%;
+    right: 3vw;
+    outline: none;
+    border: none;
+
+}
+#capture{
+    position: fixed;
+    top: 24vw;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    right: 3vw;
+    z-index: 2;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20rem;
+}
