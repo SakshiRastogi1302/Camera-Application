@@ -4,7 +4,10 @@ let captureBtn = document.getElementById("capture_button");
 let time = document.querySelector("#time");
 let filterArr = document.querySelectorAll(".filter");
 let uiFilter = document.querySelector(".ui_filter");
+let zoomIn=document.querySelector("#plus_container");
+let zoomOut=document.querySelector("#minus_container");
 let recordState = false;
+let zoomLevel=1;
 let currentFilterColor = "";
 let clearObj;
 let buffer = [];
@@ -66,9 +69,15 @@ captureBtn.addEventListener("click", function () {
 
     let tool = canvas.getContext("2d");
 
-    tool.drawImage(videoElement, 0, 0);
-    tool.fillStyle = currentFilterColor;
-    tool.fillRect(0, 0, canvas.width, canvas.height);
+    tool.scale(zoomLevel, zoomLevel);
+    let x = (canvas.width / zoomLevel - canvas.width) / 2;
+    let y = (canvas.height / zoomLevel - canvas.height) / 2;
+
+    tool.drawImage(videoElement,x,y);
+    if(currentFilterColor){
+        tool.fillStyle = currentFilterColor;
+        tool.fillRect(0, 0, canvas.width, canvas.height);
+    }
     let link = canvas.toDataURL();
     let anchor = document.createElement("a");
     anchor.href = link;
@@ -115,3 +124,18 @@ for (let i = 0; i < filterArr.length; i++) {
         }
     });
 }
+
+
+
+zoomIn.addEventListener("click", function () {
+    if (zoomLevel < 3) {
+        zoomLevel += 0.2;
+        videoElement.style.transform = `scale(${zoomLevel})`;
+    }
+})
+zoomOut.addEventListener("click", function () {
+    if (zoomLevel > 1) {
+        zoomLevel -= 0.2;
+        videoElement.style.transform = `scale(${zoomLevel})`;
+    }
+})

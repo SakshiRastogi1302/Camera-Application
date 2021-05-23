@@ -141,6 +141,7 @@ body {
     position: fixed;
     top: 13vh;
     right: 7vw;
+    z-index: 6;
 }
 
 .icon_container {
